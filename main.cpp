@@ -67,7 +67,6 @@ int main() {
     << endl;
 
     cin >> command;
-    cout << command;
 
     switch(command) {
         case 'a':
@@ -88,7 +87,10 @@ int main() {
             for(int i = 0; i < tasks.size(); i++) {
                 if(tasks[i].id == id) {
                     cout << "Your task description:\n";
+                    cout << "==========description===========\n";
                     cout << tasks[i].description << endl;
+                    cout << "================================\n";
+
                     break;
                 }
             }
