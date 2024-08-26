@@ -39,6 +39,12 @@ int main() {
     Task exampleTask = {1, "math", "First task", false};
     Task exampleTask2 = {2, "math","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nullam ac erat ante. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.", false};
 
+    // Task in vector
+
+    vector<Task> tasks;
+
+    tasks.push_back(exampleTask);
+    tasks.push_back(exampleTask2);
 
     cout << "\n\n";
     cout << "Welcome to your task manager \n";
@@ -50,7 +56,7 @@ int main() {
 
     cout << "\n \n";
 
-    string command;
+    char command;
     cout << "Choose a command and type it\n"
             "================================\n"
             "a - add a task\n"
@@ -62,6 +68,39 @@ int main() {
 
     cin >> command;
     cout << command;
+
+    switch(command) {
+        case 'a':
+            cout << command;
+            // Add a new task
+            break;
+        case 'c':
+            cout << command;
+            // Complete a task
+            break;
+        case 'v':
+            cout << "================================\n"
+                    "Type the id of your task"
+            << endl;
+            int id;
+            cin >> id;
+
+            for(int i = 0; i < tasks.size(); i++) {
+                if(tasks[i].id == id) {
+                    cout << "Your task description:\n";
+                    cout << tasks[i].description << endl;
+                    break;
+                }
+            }
+            // View a task's description
+            break;
+        case 'd':
+            cout << command;
+            // Delete a task
+            break;
+        default:
+            cout << "Invalid command. Please try again." << endl;
+    }
 
     return 0;
 }
