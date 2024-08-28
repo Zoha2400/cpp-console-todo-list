@@ -82,7 +82,7 @@ int main() {
                 getline(cin, taskDescription);
 
                 if (!taskName.empty() && !taskDescription.empty()) {
-                    int id = tasks.size();
+                    int id = tasks.back().id + 1;
                     Task newTask = {id, taskName, taskDescription, false};
                     tasks.push_back(newTask);
                 } else {
@@ -119,8 +119,17 @@ int main() {
                 break;
             }
             case 'd': {
-                cout << command << endl;
-                // Delete a task
+                cout << "================================\n"
+                     << "Type the id of your task" << endl;
+                int id;
+                cin >> id;
+                cin.ignore();
+
+                if(id > 0 && id <= tasks.size()) {
+                    cout << "Deleting task with ID " << id << endl;
+                    tasks.erase(tasks.begin() + id - 1);
+                    cout << "Task deleted successfully. Type 't' to see all tasksd" << endl;
+                }
                 break;
             }
             case 'q': {
