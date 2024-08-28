@@ -74,7 +74,6 @@ int main() {
 
         switch (command) {
             case 'a': {
-                cout << command << endl;
                 string taskName, taskDescription;
 
                 cout << "Enter task name: ";
