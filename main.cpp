@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <vector>
 
+
 using namespace std;
 
 struct Task {
@@ -91,9 +92,18 @@ int main() {
                 break;
             }
             case 'c': {
-                cout << command << endl;
-                // Complete a task
-                break;
+                cout << "================================\n"
+                << "Type the id of your task" << endl;
+                int id;
+                cin >> id;
+                cin.ignore();
+
+                if(id > 0 && id <= tasks.size()) {
+                    tasks[id - 1].isCompleted = !tasks[id - 1].isCompleted;
+                    cout << "Task with ID " << id << " has been " << (tasks[id - 1].isCompleted? "completed" : "uncompleted") << endl;
+                    cout << "Task deleted successfully. Type 't' to see all tasks" << endl;
+                }
+                break;c
             }
             case 'v': {
                 cout << "================================\n"
@@ -128,7 +138,7 @@ int main() {
                 if(id > 0 && id <= tasks.size()) {
                     cout << "Deleting task with ID " << id << endl;
                     tasks.erase(tasks.begin() + id - 1);
-                    cout << "Task deleted successfully. Type 't' to see all tasksd" << endl;
+                    cout << "Task deleted successfully. Type 't' to see all tasks" << endl;
                 }
                 break;
             }
