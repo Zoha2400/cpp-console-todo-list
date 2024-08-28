@@ -103,7 +103,7 @@ int main() {
                     cout << "Task with ID " << id << " has been " << (tasks[id - 1].isCompleted? "completed" : "uncompleted") << endl;
                     cout << "Task deleted successfully. Type 't' to see all tasks" << endl;
                 }
-                break;c
+                break;
             }
             case 'v': {
                 cout << "================================\n"
