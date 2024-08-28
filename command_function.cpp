@@ -71,7 +71,7 @@ int task_switching(char command) {
             bool found = false;
             for (const auto& task : tasks) {
                 if (task.id == id) {
-                    cout << "Your task description:\n";
+                    cout << task.name <<"'s description:\n";
                     cout << "==========description===========\n";
                     cout << task.description << endl;
                     cout << "================================\n";
