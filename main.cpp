@@ -13,6 +13,8 @@ struct Task {
     bool isCompleted;
 };
 
+vector<Task> tasks;
+
 void printTask(const Task& task) {
     int minLength = 52;
     int textLength = task.description.length();
@@ -41,8 +43,6 @@ int main() {
 
     // Task in vector
 
-    vector<Task> tasks;
-
     tasks.push_back(exampleTask);
     tasks.push_back(exampleTask2);
 
@@ -63,45 +63,82 @@ int main() {
             "c - complete\n"
             "v - display a task's discription\n"
             "d - delete a task\n"
+            "t - list tasks\n"
+            "q - quit\n"
             "================================"
     << endl;
+  while (true) {
+        cout << "Enter command (a: add, c: complete, v: view, d: delete, t: list tasks ,q: quit): ";
+        cin >> command;
+        cin.ignore();
 
-    cin >> command;
+        switch (command) {
+            case 'a': {
+                cout << command << endl;
+                string taskName, taskDescription;
 
-    switch(command) {
-        case 'a':
-            cout << command;
-            // Add a new task
-            break;
-        case 'c':
-            cout << command;
-            // Complete a task
-            break;
-        case 'v':
-            cout << "================================\n"
-                    "Type the id of your task"
-            << endl;
-            int id;
-            cin >> id;
+                cout << "Enter task name: ";
+                getline(cin, taskName);
+                cout << "Enter task description: ";
+                getline(cin, taskDescription);
 
-            for(int i = 0; i < tasks.size(); i++) {
-                if(tasks[i].id == id) {
-                    cout << "Your task description:\n";
-                    cout << "==========description===========\n";
-                    cout << tasks[i].description << endl;
-                    cout << "================================\n";
-
-                    break;
+                if (!taskName.empty() && !taskDescription.empty()) {
+                    int id = tasks.size();
+                    Task newTask = {id, taskName, taskDescription, false};
+                    tasks.push_back(newTask);
+                } else {
+                    cout << "Invalid input. Task name and description must not be empty." << endl;
                 }
+                break;
             }
-            // View a task's description
-            break;
-        case 'd':
-            cout << command;
-            // Delete a task
-            break;
-        default:
-            cout << "Invalid command. Please try again." << endl;
+            case 'c': {
+                cout << command << endl;
+                // Complete a task
+                break;
+            }
+            case 'v': {
+                cout << "================================\n"
+                     << "Type the id of your task" << endl;
+                int id;
+                cin >> id;
+                cin.ignore();
+
+                bool found = false;
+                for (const auto& task : tasks) {
+                    if (task.id == id) {
+                        cout << "Your task description:\n";
+                        cout << "==========description===========\n";
+                        cout << task.description << endl;
+                        cout << "================================\n";
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    cout << "Task with ID " << id << " not found." << endl;
+                }
+                break;
+            }
+            case 'd': {
+                cout << command << endl;
+                // Delete a task
+                break;
+            }
+            case 'q': {
+                cout << "Quitting the program." << endl;
+                return 0;
+            }
+            case 't': {
+                cout << "Your tasks:\n";
+                for (const auto& task : tasks) {
+                    printTask(task);
+                }
+                break;
+            }
+            default: {
+                cout << "Invalid command. Please try again." << endl;
+            }
+        }
     }
 
     return 0;
